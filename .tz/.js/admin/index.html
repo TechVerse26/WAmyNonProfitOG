@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>এডমিন প্যানেল | Rupsha Jonokollan Foundation</title>
+<title>admin | Rupsha Jonokollan Foundation</title>
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="css/admin.css">
@@ -21,23 +21,23 @@
       </div>
 
       <nav>
-        <div class="nav-item" data-route="dashboard"><i class="fa-solid fa-gauge-high"></i> ড্যাশবোর্ড</div>
-        <div class="nav-item" data-route="members"><i class="fa-solid fa-file-signature"></i> আবেদন / সদস্য ফরম</div>
-        <div class="nav-item" data-route="team"><i class="fa-solid fa-users"></i> কমিটি সদস্য (Team)</div>
-        <div class="nav-item" data-route="donors"><i class="fa-solid fa-hand-holding-heart"></i> দাতাগণ (Donors)</div>
-        <div class="nav-item" data-route="gallery"><i class="fa-solid fa-images"></i> গ্যালারি</div>
-        <div class="nav-item" data-route="notices"><i class="fa-solid fa-bullhorn"></i> নোটিশ / ঘোষণা</div>
-        <div class="nav-item" data-route="events"><i class="fa-solid fa-calendar-days"></i> আসন্ন ইভেন্ট</div>
-        <div class="nav-item" data-route="requests"><i class="fa-solid fa-pen-to-square"></i> তথ্য পরিবর্তনের অনুরোধ</div>
-        <div class="nav-item" data-route="donations"><i class="fa-solid fa-sack-dollar"></i> চাঁদা / অনুদান</div>
-        <div class="nav-item" data-route="documents"><i class="fa-solid fa-file-lines"></i> সদস্য ডকুমেন্ট</div>
-        <div class="nav-item" data-route="security"><i class="fa-solid fa-shield-halved"></i> নিরাপত্তা আপগ্রেড</div>
+        <div class="nav-item" data-route="dashboard"><i class="fa-solid fa-gauge-high"></i> Dashboard</div>
+        <div class="nav-item" data-route="members"><i class="fa-solid fa-file-signature"></i>From Member</div>
+        <div class="nav-item" data-route="team"><i class="fa-solid fa-users"></i>Committee</div>
+        <div class="nav-item" data-route="donors"><i class="fa-solid fa-hand-holding-heart"></i>Donors</div>
+        <div class="nav-item" data-route="gallery"><i class="fa-solid fa-images"></i>Gallery</div>
+        <div class="nav-item" data-route="notices"><i class="fa-solid fa-bullhorn"></i>Notice</div>
+        <div class="nav-item" data-route="events"><i class="fa-solid fa-calendar-days"></i>Event</div>
+        <div class="nav-item" data-route="requests"><i class="fa-solid fa-pen-to-square"></i>Member Data update</div>
+        <div class="nav-item" data-route="donations"><i class="fa-solid fa-sack-dollar"></i>Donation</div>
+        <div class="nav-item" data-route="documents"><i class="fa-solid fa-file-lines"></i>Document</div>
+        <div class="nav-item" data-route="security"><i class="fa-solid fa-shield-halved"></i>Auth mg</div>
       </nav>
 
       <div class="sidebar-foot">
         <div class="who" id="whoAmI">—</div>
-        <div class="nav-item" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> লগআউট</div>
-        <a class="nav-item" href="/verify.html" target="_blank" style="text-decoration:none;"><i class="fa-solid fa-arrow-up-right-from-square"></i> সাইট দেখুন</a>
+        <div class="nav-item" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i>Logout</div>
+        <a class="nav-item" href="/#" target="_blank" style="text-decoration:none;"><i class="fa-solid fa-arrow-up-right-from-square"></i>Visit site</a>
       </div>
     </aside>
 
@@ -46,14 +46,14 @@
         <div style="display:flex; align-items:center; gap:12px;">
           <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
           <div>
-            <h1 id="pageTitle">ড্যাশবোর্ড</h1>
-            <div class="sub" id="pageSub">রূপসা জনকল্যাণ ফাউন্ডেশন — সম্পূর্ণ প্রজেক্ট ব্যবস্থাপনা</div>
+            <h1 id="pageTitle">Dashboard</h1>
+            <div class="sub" id="pageSub">Rupsha jonokollan foundation— Complete Project Management Admin Panel</div>
           </div>
         </div>
       </div>
 
       <div class="content" id="viewRoot">
-        <div class="empty-state"><i class="fa-solid fa-spinner spin"></i><p>লোড হচ্ছে...</p></div>
+        <div class="empty-state"><i class="fa-solid fa-spinner spin"></i><p>Loading...</p></div>
       </div>
     </div>
   </div>
@@ -63,11 +63,11 @@
   <div class="confirm-box" id="confirmBox">
     <div class="confirm-card">
       <i class="fa-solid fa-triangle-exclamation"></i>
-      <h3 id="confirmTitle">নিশ্চিত করুন</h3>
-      <p id="confirmMsg">আপনি কি নিশ্চিত?</p>
+      <h3 id="confirmTitle">Confirm</h3>
+      <p id="confirmMsg">Are you sure?</p>
       <div class="confirm-actions">
-        <button class="btn btn-ghost" id="confirmCancel">বাতিল</button>
-        <button class="btn btn-danger" id="confirmOk">নিশ্চিত করুন</button>
+        <button class="btn btn-ghost" id="confirmCancel">Chancel</button>
+        <button class="btn btn-danger" id="confirmOk">Confirm</button>
       </div>
     </div>
   </div>
