@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<base href="/">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>404 | page found</title>
+<meta name="theme-color" content="#0E3B36">
+<meta name="robots" content="noindex">
+<link rel="manifest" href="manifest.json">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rupsha Janakalyan Foundation | Page not found">
+<meta property="og:description" content="সেবা হোক প্রত্যয়, জনকল্যাণ হোক জয় — সঠিক পেজে ফিরে যান অথবা খুঁজে নিন যা দরকার।">
+<link rel="icon" type="image/png" href="icons/favicon.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<!-- ঠিক index.html-এর মতোই একই ডিজাইন-সিস্টেম ফাইলগুলো লোড হচ্ছে, -->
+<!-- তাই নেভিগেশন বার ও ফুটার হোমপেজের সাথে হুবহু মিলে যাবে -->
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/nav.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/back-home.css">
+<link rel="stylesheet" href="css/error.css">
+</head>
+<body>
+
+<!-- নেভিগেশন বার — হোমপেজের মতোই js/nav.js দিয়ে রেন্ডার হবে -->
+<div id="nav-root"></div>
+
+<main class="error-page">
+  <a class="rjf-back-home" href="/">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transform:rotate(-90deg)"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    <span>Go back</span>
+  </a>
+
+  <div class="breadcrumb">
+    <a href="/">হোম</a> <i class="fa-solid fa-chevron-right"></i> <span>Page not found</span>
+  </div>
+
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
+
+  <div class="error-card">
+    <div class="error-stage" id="errorStage">
+      <div class="main-404" id="main404">
+        <span>4</span><span>0</span><span>4</span>
+      </div>
+      <div class="hand-sign" id="handSign">
+        <div class="sign-board">404</div>
+        <div class="hand">
+          <div class="finger f1"></div>
+          <div class="finger f2"></div>
+          <div class="finger f3"></div>
+          <div class="thumb"></div>
+          <div class="palm"></div>
+        </div>
+        <div class="arm"></div>
+      </div>
+    </div>
+    <p class="scene-caption" id="sceneCaption"></p>
+    <div class="icon-float"><i class="fa-solid fa-compass"></i></div>
+
+    <h1>Oops! Page not found.</h1>
+    <p class="desc">যে পেজটা খুঁজছেন সেটা হয়তো ডিলিট হয়ে গেছে, নাম বদলে গেছে, অথবা লিংকটা ভুল। চিন্তা নেই — <b>নিচের অপশনগুলো থেকে রূপসা জনকল্যাণ ফাউন্ডেশনের সঠিক পেজে ফিরে যান।</b></p>
+
+    <form class="search-box" id="searchForm" onsubmit="return handleSearch(event)">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="searchInput" placeholder="যা খুঁজছেন লিখুন...">
+      <button type="submit">খুঁজুন</button>
+    </form>
+    <div class="suggest-row">
+      <span class="suggest-chip" onclick="quickSearch('দান')">দান করুন</span>
+      <span class="suggest-chip" onclick="quickSearch('সদস্য')">সদস্যবৃন্দ</span>
+      <span class="suggest-chip" onclick="quickSearch('যাচাই')">যাচাই</span>
+      <span class="suggest-chip" onclick="quickSearch('যোগাযোগ')">যোগাযোগ</span>
+    </div>
+
+    <div class="section-label">Useful links</div>
+    <div class="quick-links">
+      <a href="/"><i class="fa-solid fa-house"></i> হোম পেজ</a>
+      <a href="/#somporke"><i class="fa-solid fa-circle-info"></i> আমাদের সম্পর্কে</a>
+      <a href="/#/member"><i class="fa-solid fa-people-group"></i> সদস্যবৃন্দ</a>
+      <a href="/verify.html"><i class="fa-solid fa-magnifying-glass"></i> সদস্য যাচাই</a>
+      <a href="/#অবস্থান"><i class="fa-solid fa-location-dot"></i> যোগাযোগ</a>
+      <a href="/#feedback-root"><i class="fa-solid fa-comment-dots"></i> ফিডব্যাক</a>
+      <a href="/#/privacy"><i class="fa-solid fa-file-shield"></i> প্রাইভেসি পলিসি</a>
+      <a href="/#/terms"><i class="fa-solid fa-file-lines"></i> ব্যবহারের শর্তাবলী</a>
+      <a href="/#/donate" class="highlight"><i class="fa-solid fa-hand-holding-heart"></i> দান করুন</a>
+      <a href="https://www.facebook.com/rupshajonokollanfoundation" class="highlight"><i class="fa-brands fa-facebook-f"></i> ফেসবুক পেজ</a>
+    </div>
+
+    <a href="/" class="home-btn"><i class="fa-solid fa-arrow-left-long"></i> হোম পেজে ফিরে যান</a>
+
+    <div class="redirect-note">
+      <span id="countdown">১০</span> সেকেন্ডে স্বয়ংক্রিয়ভাবে হোম পেজে নিয়ে যাওয়া হবে —
+      <a onclick="cancelRedirect()" id="cancelLink">বাতিল করুন</a>
+    </div>
+
+    <div class="help-line">
+      <a href="mailto:info.rjfoundation25@gmail.com"><i class="fa-solid fa-envelope"></i> info.rjfoundation25@gmail.com</a>
+      <a href="https://wa.me/8801957329211"><i class="fa-brands fa-whatsapp"></i> WhatsApp-এ যোগাযোগ করুন</a>
+    </div>
+  </div>
+</main>
+
+<!-- ফুটার — হোমপেজের মতোই js/footer.js দিয়ে রেন্ডার হবে (একই কুইক লিংক, নীতিমালা লিংক, সোশ্যাল আইকন) -->
+<div id="footer-root"></div>
+
+<script src="js/data.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/footer.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // হোমপেজের মতো একই ইঞ্জিন দিয়ে নেভ ও ফুটার তৈরি
+  RJF.renderNav();
+  RJF.renderFooter();
+
+  // nav.js/footer.js যে লিংকগুলো বানায় (যেমন "#hero", "#/donate") সেগুলো
+  // index.html-এর ভেতরের জন্য বানানো। যেহেতু আমরা এখন 404.html-এ আছি,
+  // সেগুলোর সামনে "/" জুড়ে দিচ্ছি যাতে ক্লিক করলে সরাসরি হোম পেজের
+  // সঠিক জায়গায় নিয়ে যায় (যেমন "#/donate" → "/#/donate")
+  document.querySelectorAll('#nav-root a[href^="#"], #footer-root a[href^="#"]').forEach(function (a) {
+    a.setAttribute('href', '/' + a.getAttribute('href'));
+  });
+});
+
+// প্রতিবার পেজ লোড/রিফ্রেশে "404" লেখাটার ৮টা স্টাইলের মধ্যে থেকে একটা র‍্যান্ডম বেছে নেওয়া হয়
+(function () {
+  var styleNo = Math.floor(Math.random() * 8) + 1;
+  var stage = document.getElementById('errorStage');
+  if (stage) stage.classList.add('style-' + styleNo);
+
+  var captions = {
+    1: 'নিয়ন গ্লো স্টাইলে জ্বলছে',
+    2: 'থ্রিডি এমবস্‌ড স্টাইলে ভেসে আছে',
+    3: 'একটা কার্টুন হাত সাইনবোর্ডে "৪০৪" ধরে আছে!',
+    4: 'গ্লসি বাবল স্টাইলে ফুলে আছে',
+    5: 'ডিজিটাল গ্লিচ ইফেক্টে কাঁপছে',
+    6: 'লিকুইড ওয়েভ স্টাইলে দুলছে',
+    7: 'রাবার স্ট্যাম্পের মতো ছাপ মারা',
+    8: 'পেপার কাট-আউট স্টাইলে পিন করা'
+  };
+  var cap = document.getElementById('sceneCaption');
+  if (cap) cap.textContent = captions[styleNo] || '';
+})();
+
+// smart search: known keywords → real পেজের রুট
+var routeMap = [
+  { keys: ['দান','donate','ডোনেট','অনুদান'], url: '/#/donate' },
+  { keys: ['সদস্য','member','টিম','team','ভলান্টিয়ার','কমিটি'], url: '/#/member' },
+  { keys: ['যাচাই','verify'], url: '/verify.html' },
+  { keys: ['যোগাযোগ','contact','ঠিকানা','অবস্থান','location'], url: '/#অবস্থান' },
+  { keys: ['ফিডব্যাক','feedback','মতামত','রিভিউ','review'], url: '/#feedback-root' },
+  { keys: ['প্রাইভেসি','privacy'], url: '/#/privacy' },
+  { keys: ['শর্তাবলী','terms'], url: '/#/terms' },
+  { keys: ['আমাদের সম্পর্কে','about','পরিচিতি'], url: '/#somporke' },
+];
+
+function resolveQuery(q) {
+  q = q.trim().toLowerCase();
+  if (!q) return '/';
+  var match = routeMap.find(function (r) { return r.keys.some(function (k) { return q.includes(k.toLowerCase()); }); });
+  return match ? match.url : '/';
+}
+function handleSearch(e) {
+  e.preventDefault();
+  window.location.href = resolveQuery(document.getElementById('searchInput').value);
+  return false;
+}
+function quickSearch(term) {
+  window.location.href = resolveQuery(term);
+}
+
+// auto redirect countdown
+var bnDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+function toBn(n) { return String(n).split('').map(function (d) { return /\d/.test(d) ? bnDigits[d] : d; }).join(''); }
+var seconds = 10;
+var redirectTimer;
+var countdownEl = document.getElementById('countdown');
+function tick() {
+  seconds--;
+  if (seconds <= 0) { window.location.href = '/'; return; }
+  countdownEl.textContent = toBn(seconds);
+  redirectTimer = setTimeout(tick, 1000);
+}
+redirectTimer = setTimeout(tick, 1000);
+function cancelRedirect() {
+  clearTimeout(redirectTimer);
+  document.querySelector('.redirect-note').innerHTML = '✔️ স্বয়ংক্রিয় রিডাইরেক্ট বাতিল করা হয়েছে';
+}
+</script>
+
+</body>
+</html>

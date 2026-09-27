@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="bn" class="light">
+<head>
+    <meta charset="UTF-8">
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Verification | Rupsha Jonokollan Foundation</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Hind Siliguri', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    
+    <!-- External Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <!-- New: HTML5 QR Code Scanner -->
+    <script src="https://unpkg.com/html5-qrcode"></script>
+
+
+
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/back-home.css">
+    <link rel="stylesheet" href="css/verify-base.css">
+    <link rel="stylesheet" href="css/verify-qr.css">
+</head>
+<body class="flex items-center justify-center p-4">
+
+    <a class="rjf-back-home no-print" href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transform:rotate(-90deg)"><path d="M12 19V5M5 12l7-7 7 7"/></svg><span>Go back</span></a>
+
+    <!-- Floating Buttons Container -->
+    <div class="fixed top-4 right-4 z-50 no-print flex gap-3">
+        <button id="lang-toggle" class="bg-white/80 dark:bg-slate-800/80 backdrop-blur border border-gray-200 dark:border-gray-700 px-3 py-2 rounded-full shadow-lg text-gray-700 dark:text-gray-300 font-bold text-xs transition duration-300 hover:scale-105 active:scale-95 cursor-pointer flex items-center justify-center">
+            EN/বাং
+        </button>
+        <button id="theme-toggle" class="bg-white/80 dark:bg-slate-800/80 backdrop-blur border border-gray-200 dark:border-gray-700 w-10 h-10 rounded-full shadow-lg text-gray-700 dark:text-gray-300 transition duration-300 hover:scale-105 active:scale-95 cursor-pointer flex items-center justify-center">
+            <i id="theme-toggle-icon" class="fas fa-moon text-lg"></i>
+        </button>
+    </div>
+
+    <!-- 1. Search Card -->
+    <div id="search-card" class="hidden animate-pop-in glass-card max-w-md w-full p-8 text-center relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-indigo-600"></div>
+        <div class="w-20 h-20 bg-blue-50 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-magnifying-glass text-blue-500 text-3xl"></i>
+        </div>
+        <h1 class="text-2xl font-bold text-gray-800 dark:text-white mb-2 translate-title">মেম্বার ভেরিফিকেশন</h1>
+        <p class="text-gray-500 dark:text-gray-400 text-sm mb-6 translate-subtitle">সদস্যের সঠিক পরিচয় নিশ্চিত করতে আইডি দিয়ে সার্চ করুন</p>
+        
+        <form id="search-form" class="space-y-4">
+            <!-- Updated Input Field with Voice & QR Search -->
+            <div class="relative">
+                <input type="text" id="search-input" placeholder="Member ID (year-code)" required
+                    class="w-full pl-4 pr-20 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-slate-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 uppercase tracking-wider text-center">
+                <div class="absolute right-2 top-1/2 transform -translate-y-1/2 flex items-center gap-1">
+                    <button type="button" id="qr-scan-btn" class="w-8 h-8 flex items-center justify-center bg-gray-100 dark:bg-slate-600 rounded-full text-teal-600 hover:bg-teal-100 transition duration-200" title="QR Scan">
+                        <i class="fas fa-qrcode"></i>
+                    </button>
+                    <button type="button" id="voice-search-btn" class="w-8 h-8 flex items-center justify-center bg-gray-100 dark:bg-slate-600 rounded-full text-blue-500 hover:bg-blue-100 transition duration-200" title="Voice Search">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+            <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-xl font-bold shadow-md hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300">
+                <i class="fas fa-check-circle mr-2"></i> <span class="translate-btn">ভেরিফাই করুন</span>
+            </button>
+        </form>
+    </div>
+
+    <!-- 2. Loader Card (Original) -->
+    <div id="loader" class="hidden glass-card max-w-md w-full p-8">
+        <div class="skeleton h-20 w-20 rounded-full mx-auto mb-6"></div>
+        <div class="skeleton h-8 w-3/4 mx-auto mb-4"></div>
+        <div class="skeleton h-4 w-1/2 mx-auto mb-8"></div>
+        <div class="space-y-4">
+            <div class="skeleton h-12 w-full"></div>
+            <div class="skeleton h-12 w-full"></div>
+            <div class="skeleton h-12 w-full"></div>
+        </div>
+    </div>
+
+    <!-- 3. Verified Result Card -->
+    <div id="verified-card" class="hidden animate-pop-in glass-card max-w-md w-full p-6 sm:p-8 text-center relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-teal-500 to-emerald-600"></div>
+        
+        <div id="card-watermark" class="absolute inset-0 z-0 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 select-none">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-300 dark:text-gray-600 transform -rotate-45 tracking-widest uppercase">rupsha jonokollan foundation</h2>
+        </div>
+
+        <div class="relative w-24 h-24 mx-auto mb-4 z-10">
+            <div class="bg-slate-200 dark:bg-slate-700 animate-pulse w-full h-full rounded-full flex items-center justify-center shadow-inner overflow-hidden border-4 border-white dark:border-gray-700">
+                <img id="profile-img" src="icons/avatar.webp" alt="Profile" class="w-full h-full object-cover opacity-0 transition-opacity duration-500" onload="this.classList.remove('opacity-0'); this.parentElement.classList.remove('animate-pulse');" onerror="this.src='rjf.webp'; this.classList.remove('opacity-0'); this.parentElement.classList.remove('animate-pulse');">
+            </div>
+            <div class="absolute bottom-0 right-0 bg-white dark:bg-gray-800 rounded-full shadow-lg overflow-hidden w-8 h-8 flex items-center justify-center border-2 border-white dark:border-gray-800">
+                <div class="text-emerald-500 flex items-center justify-center w-full h-full text-base">
+    <i class="fas fa-circle-check"></i>
+</div>
+
+            </div>
+        </div>
+        
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-1 tracking-tight z-10 relative translate-v-title">সদস্যপদ ভেরিফাইড</h1>
+        <div class="inline-flex items-center gap-2 bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-400 px-3 py-1 rounded-full text-sm font-semibold mb-6 z-10 relative">
+            <i class="fas fa-shield-halved"></i> <span class="translate-v-badge">ভেরিফাইড মেম্বার</span>
+        </div>
+
+        <div class="space-y-3 text-left bg-white/60 dark:bg-slate-800/60 p-5 rounded-xl border border-gray-100 dark:border-gray-700 z-10 relative backdrop-blur-sm">
+            <div class="flex justify-between items-center border-b border-gray-200/60 dark:border-gray-700 pb-3">
+                <span class="text-gray-500 dark:text-gray-400 text-sm translate-v-id"><i class="fas fa-id-card mr-2 opacity-70"></i>সদস্য আইডি</span>
+                <div class="flex items-center gap-2">
+                    <span id="display-id" class="font-bold text-teal-700 dark:text-teal-400 uppercase tracking-widest text-lg bg-teal-50 dark:bg-slate-700 px-2 py-1 rounded">---</span>
+                    <button id="copy-id-btn" class="text-gray-400 hover:text-teal-500 transition-colors" title="Copy ID">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="member-info-container" class="space-y-3 pt-1">
+                <!-- Info injected dynamically here -->
+            </div>
+        </div>
+
+        <div class="mt-6 p-4 bg-gray-50 dark:bg-slate-800 rounded-xl border border-dashed border-gray-300 dark:border-gray-600 flex items-center justify-between no-print z-10 relative">
+            <div class="text-left">
+                <p class="text-xs font-bold text-gray-800 dark:text-white uppercase mb-1 flex items-center gap-1">
+                    <i class="fas fa-lock text-green-500"></i> <span class="translate-qr-title">ফাউন্ডেশন মেম্বার ভেরিফাই</span>
+                </p>
+                <p class="text-[10px] text-gray-500 dark:text-gray-400 translate-qr-sub">স্ক্যান করে অরিজিনাল ডাটাবেসে চেক করুন</p>
+            </div>
+            <div id="qrcode-container" class="w-16 h-16 bg-white p-1 rounded shadow-sm flex items-center justify-center">
+                <!-- QR Code generated locally -->
+            </div>
+        </div>
+        
+        <div class="mt-4 flex justify-between items-center px-2 z-10 relative">
+            <p class="text-[10px] text-gray-500 dark:text-gray-400"><i class="fas fa-clock mr-1"></i> <span id="live-time"></span></p>
+            <p class="text-[10px] text-green-600 dark:text-green-400 font-semibold flex items-center gap-1.5"><span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> Active Status</p>
+        </div>
+
+        <div class="mt-6 grid grid-cols-2 gap-3 no-print z-10 relative">
+            <button id="share-btn" class="bg-blue-50 border border-blue-200 dark:border-slate-600 dark:bg-slate-700 text-blue-700 dark:text-blue-400 py-2.5 rounded-xl font-bold hover:shadow-md active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2">
+                <i class="fas fa-share-nodes"></i> <span class="translate-btn-share">শেয়ার</span>
+            </button>
+            <button id="download-btn" class="bg-indigo-50 border border-indigo-200 dark:border-slate-600 dark:bg-slate-700 text-indigo-700 dark:text-indigo-400 py-2.5 rounded-xl font-bold hover:shadow-md active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2">
+                <i class="fas fa-image"></i> <span class="translate-btn-save">ইমেজ সেভ</span>
+            </button>
+            <button id="pdf-btn" class="bg-red-50 border border-red-200 dark:border-slate-600 dark:bg-slate-700 text-red-700 dark:text-red-400 py-2.5 rounded-xl font-bold hover:shadow-md active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2">
+                <i class="fas fa-file-pdf"></i> <span class="translate-btn-pdf">পিডিএফ</span>
+            </button>
+            <button onclick="window.print()" class="bg-white dark:bg-slate-800 border-2 border-teal-600 dark:border-teal-500 text-teal-700 dark:text-teal-400 py-2.5 rounded-xl font-bold hover:shadow-md active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2">
+                <i class="fas fa-print"></i> <span class="translate-btn-print">প্রিন্ট</span>
+            </button>
+            <a href="/index.html" class="col-span-2 bg-gradient-to-r from-teal-600 to-emerald-600 text-white py-2.5 flex items-center justify-center rounded-xl font-bold shadow-md hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300">
+                <i class="fas fa-home mr-2"></i> <span class="translate-btn-home">হোম পেজ</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- 4. Error Card (Original) -->
+    <div id="error-card" class="hidden animate-pop-in glass-card max-w-md w-full p-8 text-center relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-red-500 to-rose-600"></div>
+        <div class="bg-red-50 dark:bg-red-900/30 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-user-xmark text-red-500 text-5xl"></i>
+        </div>
+        <h1 class="text-2xl font-bold text-gray-800 dark:text-white mb-2 translate-err-title">তথ্য পাওয়া যায়নি!</h1>
+        <p id="error-message" class="text-gray-600 dark:text-gray-300 mb-8 bg-red-50/50 dark:bg-red-900/20 p-4 rounded-lg border border-red-100 dark:border-red-800">
+            দুঃখিত, এই মেম্বার আইডিটি সঠিক নয় অথবা আমাদের ডাটাবেসে নিবন্ধিত নেই।
+        </p>
+        <button onclick="window.location.href=window.location.pathname" class="w-full bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-white py-3 rounded-xl font-bold hover:bg-gray-200 dark:hover:bg-slate-600 active:scale-[0.98] transition duration-200 mb-3">
+            <i class="fas fa-search mr-2"></i> <span class="translate-err-btn">নতুন আইডি খুঁজুন</span>
+        </button>
+    </div>
+
+    <!-- 5. New QR Scanner Modal -->
+    <div id="qr-modal" class="hidden fixed inset-0 z-[100] bg-black/80 flex items-center justify-center p-4 backdrop-blur-sm animate-pop-in">
+        <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl max-w-sm w-full relative shadow-2xl">
+            <button id="close-qr-btn" class="absolute -top-3 -right-3 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center z-10 shadow-lg hover:scale-105 active:scale-95 transition-transform"><i class="fas fa-times"></i></button>
+            <h3 class="text-center font-bold text-gray-800 dark:text-white mb-4 text-lg translate-qr-scan">কিউআর কোড স্ক্যান করুন</h3>
+            <div id="qr-reader" class="w-full overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700"></div>
+        </div>
+    </div>
+
+
+    <script type="module" src="js/verify/main.js"></script>
+</body>
+</html>
