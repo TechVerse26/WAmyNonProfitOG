@@ -47,10 +47,6 @@
 
 @media (max-width: 520px) {
   .member-page { padding-top: calc(104px + env(safe-area-inset-top, 0px)); }
-  .member-page .mp-hero { padding: 26px 20px; gap: 14px; }
-  .member-page .mp-hero-art { width: 76px; height: 76px; }
-  .member-page .mp-hero h1 { font-size: clamp(1.3rem, 6.5vw, 2.5rem); }
-  .member-page .mp-tab { padding: 9px 16px; font-size: 0.82rem; }
 }
 
 /* ---------- "মূল পাতায় ফিরুন" — শেয়ার্ড ফিক্সড বাটন, দেখুন css/back-home.css (.rjf-back-home) ---------- */
@@ -100,12 +96,6 @@
   .member-page .mp-hero { padding: 44px 44px; gap: 24px; }
   .member-page .mp-hero-art { width: 148px; height: 148px; }
 }
-@media (max-width: 380px) {
-  .member-page .mp-hero-art { display: none; }
-  .member-page .mp-grid { gap: 10px; }
-  .member-page .mp-card { padding: 12px 10px 14px; }
-  .member-page .mp-card-role { font-size: 0.72rem; }
-}
 
 /* ---------- ফিল্টার ট্যাব ---------- */
 .member-page .mp-tabs {
@@ -146,14 +136,14 @@
 /* ---------- গ্রিড ---------- */
 .member-page .mp-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
 }
 @media (min-width: 640px) {
-  .member-page .mp-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .member-page .mp-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 }
 @media (min-width: 980px) {
-  .member-page .mp-grid { grid-template-columns: repeat(4, 1fr); gap: 22px; }
+  .member-page .mp-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
 }
 
 /* ---------- মেম্বার কার্ড ---------- */
@@ -166,6 +156,7 @@
   border: 1px solid var(--mp-border);
   border-radius: var(--mp-radius-lg);
   padding: 14px 12px 18px;
+  min-width: 0;
   box-shadow: var(--mp-shadow);
   cursor: pointer;
   transition: var(--mp-transition);
@@ -198,30 +189,40 @@
   padding: 4px 12px;
   border-radius: var(--mp-radius-pill);
   margin-bottom: 8px;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 .member-page .mp-card-name {
   font-size: 0.98rem;
   font-weight: 600;
   color: var(--mp-navy);
   margin-bottom: 10px;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 .member-page .mp-card-role {
-  display: inline-block;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   max-width: 100%;
   font-family: 'Hind Siliguri', sans-serif;
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--mp-white);
   background: var(--mp-blue);
-  padding: 6px 16px;
-  border-radius: var(--mp-radius-pill);
+  /* উপর-নিচের ফাঁকা জায়গা border দিয়ে — যাতে line-clamp-এর ৩য় লাইন padding-এ উঁকি দিতে না পারে;
+     এক লাইনের পিলের মাপ আগের মতোই (৬px + লাইন + ৬px) */
+  padding: 0 16px;
+  border: solid transparent;
+  border-width: 6px 0;
+  border-radius: 18px; /* এক লাইনে আগের মতোই পুরো পিল (উচ্চতার অর্ধেকে আটকে যায়), দুই লাইনে নরম কোণ */
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 
 .member-page .mp-empty {
@@ -326,6 +327,11 @@
 }
 .member-page .mp-scroll-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
 .member-page .mp-scroll-top:hover { transform: translateY(-3px); }
+
+/* ---------- মোবাইল সেফটি-নেট: এই পাতার ভেতরের কোনো কিছু আর ডকুমেন্টকে স্ক্রিনের চেয়ে চওড়া করতে পারবে না ---------- */
+@media (max-width: 640px) {
+  .member-page { overflow-x: hidden; overflow-x: clip; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .member-page * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
