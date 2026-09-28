@@ -90,7 +90,7 @@ RJF.loginConfig = Object.assign({
   function skeleton(n) {
     let out = '';
     for (let i = 0; i < n; i++) out += '<div class="lp-skel" aria-hidden="true"><i></i><i></i><i></i></div>';
-    return out + '<span class="lp-sr">লোড হচ্ছে</span>';
+    return out + '<span class="lp-sr">Loading...</span>';
   }
   lp.skeleton = skeleton;
 
@@ -99,17 +99,17 @@ RJF.loginConfig = Object.assign({
     <dialog class="lp-dialog" id="lpResetDialog" aria-labelledby="lpResetTitle">
       <div class="lp-dialog__head">
         <span class="lp-dialog__icon">${icon('key')}</span>
-        <h2 class="lp-dialog__title" id="lpResetTitle">পাসওয়ার্ড সেট / রিসেট করুন</h2>
+        <h2 class="lp-dialog__title" id="lpResetTitle">পাসওয়ার্ড মনে নেই</h2>
         <button type="button" class="lp-iconbtn" data-close aria-label="বন্ধ করুন">${icon('x')}</button>
       </div>
 
       <div id="lpResetForm">
-        <p class="lp-dialog__desc">আপনার নিবন্ধিত ইমেইল দিন — পাসওয়ার্ড সেট করার একটি লিংক সেই ইমেইলে যাবে। প্রথমবার লগইন করতে চাইলেও এখান থেকেই নিজের পাসওয়ার্ড সেট করে নিন।</p>
+        <p class="lp-dialog__desc">আপনার নিবন্ধিত ইমেইল যেটা ফরম পূরণের সময় দিয়ে ছিলেন  — পাসওয়ার্ড সেট করার একটি লিংক সেই ইমেইলে যাবে। প্রথমবার লগইন করতে চাইলেও এখান থেকেই নিজের পাসওয়ার্ড সেট করে নিন।</p>
         <div class="lp-field">
           <label class="lp-label" for="lpResetId">ইমেইল</label>
           <div class="lp-control">
             <span class="lp-control__icon" id="lpResetIdIcon">${icon('mail')}</span>
-            <input class="lp-input" id="lpResetId" type="email" inputmode="email" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="send" placeholder="example@email.com" aria-describedby="lpResetIdErr">
+            <input class="lp-input" id="lpResetId" type="email" inputmode="email" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="send" placeholder="imranahmed@email.com" aria-describedby="lpResetIdErr">
           </div>
           <p class="lp-error" id="lpResetIdErr" hidden></p>
         </div>
@@ -123,13 +123,13 @@ RJF.loginConfig = Object.assign({
       <div id="lpResetDone" hidden>
         <div class="lp-done">
           <span class="lp-done__icon">${icon('check')}</span>
-          <h3 class="lp-done__title" id="lpResetDoneTitle">ইমেইল পাঠানো হয়েছে</h3>
+          <h3 class="lp-done__title" id="lpResetDoneTitle">আপনার ইমেইল চেক করুন</h3>
           <p class="lp-done__msg" id="lpResetDoneMsg"></p>
         </div>
         <div class="lp-alert lp-alert--error" id="lpResetDoneAlert" role="alert" hidden></div>
         <div class="lp-dialog__actions">
           <button type="button" class="lp-btn lp-btn--ghost" id="lpResetResend">আবার পাঠান</button>
-          <button type="button" class="lp-btn lp-btn--primary" id="lpResetBack">লগইনে ফিরে যান</button>
+          <button type="button" class="lp-btn lp-btn--primary" id="lpResetBack">লগইন করুন</button>
         </div>
       </div>
     </dialog>
@@ -137,7 +137,7 @@ RJF.loginConfig = Object.assign({
     <dialog class="lp-dialog lp-dialog--qr" id="lpQrDialog" aria-labelledby="lpQrTitle">
       <div class="lp-dialog__head">
         <span class="lp-dialog__icon">${icon('qr-code')}</span>
-        <h2 class="lp-dialog__title" id="lpQrTitle">আমার ভেরিফাই কার্ড</h2>
+        <h2 class="lp-dialog__title" id="lpQrTitle">Verification Card</h2>
         <button type="button" class="lp-iconbtn" data-close aria-label="বন্ধ করুন">${icon('x')}</button>
       </div>
       <div class="lp-qrbox" id="lpQrBig"></div>
@@ -280,7 +280,7 @@ RJF.loginConfig = Object.assign({
           <button type="button" class="lp-tab" role="tab" id="lpTabProfile" aria-controls="lpPanelProfile" aria-selected="true" data-tab="profile">${icon('user')}<span>প্রোফাইল</span></button>
           <button type="button" class="lp-tab" role="tab" id="lpTabNotices" aria-controls="lpPanelNotices" aria-selected="false" tabindex="-1" data-tab="notices">${icon('megaphone')}<span>নোটিশ</span><span class="lp-dot" id="lpNoticeDot" hidden><span class="lp-sr">নতুন নোটিশ আছে</span></span></button>
           <button type="button" class="lp-tab" role="tab" id="lpTabEvents" aria-controls="lpPanelEvents" aria-selected="false" tabindex="-1" data-tab="events">${icon('calendar')}<span>ইভেন্ট</span><span class="lp-count" id="lpEventCount" hidden></span></button>
-          <button type="button" class="lp-tab" role="tab" id="lpTabDonations" aria-controls="lpPanelDonations" aria-selected="false" tabindex="-1" data-tab="donations">${icon('heart')}<span>চাঁদা/অনুদান</span></button>
+          <button type="button" class="lp-tab" role="tab" id="lpTabDonations" aria-controls="lpPanelDonations" aria-selected="false" tabindex="-1" data-tab="donations">${icon('heart')}<span>অনুদান</span></button>
           <button type="button" class="lp-tab" role="tab" id="lpTabDocuments" aria-controls="lpPanelDocuments" aria-selected="false" tabindex="-1" data-tab="documents">${icon('file-text')}<span>ডকুমেন্ট</span></button>
         </div>
 
@@ -635,7 +635,7 @@ RJF.loginConfig = Object.assign({
         setFieldError(el.id, el.idErr, 'ইমেইল ঠিকানা দিন।');
         firstBad = el.id;
       } else if (parsed.kind === 'invalid') {
-        setFieldError(el.id, el.idErr, 'এটি সঠিক ইমেইল ঠিকানা মনে হচ্ছে না। যেমন: name@example.com');
+        setFieldError(el.id, el.idErr, 'এটি সঠিক ইমেইল ঠিকানা মনে হচ্ছে না। যেমন: name@gmail.com');
         firstBad = el.id;
       }
       if (!password) {
