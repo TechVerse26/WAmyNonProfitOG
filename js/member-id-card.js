@@ -40,7 +40,7 @@
     },
 
     assets: {
-      logo: '/icons/card-logo.png',
+      logo: '/icons/logo.webp',
       signature: '/icons/card-signature.png'
     },
 
