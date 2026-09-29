@@ -43,7 +43,7 @@ RJF.data = {
       { src: "https://tvgallery.vercel.app/RJFgallery/member/kamrul.webp", alt: "সদস্য — কামরুল", icon: "tool", label: "আমাদের ফাউন্ডেশনের সদস্য" },
       { src: "https://tvgallery.vercel.app/RJFgallery/member/fahim.webp", alt: "সদস্য — ফাহিম", icon: "tool", label: "আমাদের ফাউন্ডেশনের সদস্য" },
       { src: "https://tvgallery.vercel.app/RJFgallery/member/omor.webp", alt: "সদস্য — ওমর", icon: "tool", label: "আমাদের ফাউন্ডেশনের সদস্য" },
-      { src: "https://tvgallery.vercel.app/RJFgallery/sumon.webp", alt: "সদস্য — সুমন", icon: "tool", label: "আমাদের ফাউন্ডেশনের সদস্য" }
+      { src: "https://tvgallery.vercel.app/RJFgallery/member/sumon.webp", alt: "সদস্য — সুমন", icon: "tool", label: "আমাদের ফাউন্ডেশনের সদস্য" }
     ]
   },
 
