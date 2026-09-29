@@ -268,7 +268,7 @@ RJF.loginConfig = Object.assign({
           </div>
           <button type="button" class="lp-idcard__qr" id="lpQrOpenBtn" aria-label="QR কোড বড় করে দেখুন">
             <span class="lp-idcard__qrsvg" id="lpQrInline"></span>
-            <span class="lp-idcard__qrcap">স্ক্যান করলে সদস্যপদ যাচাই হবে। বড় করতে ট্যাপ করুন।</span>
+            <span class="lp-idcard__qrcap">আপনার ফাউন্ডেশন এর আইডি কার্ড ডাউনলোড করতে ট্যাপ করুন।</span>
           </button>
         </article>
       </aside>
