@@ -17,7 +17,7 @@
 
 <br>
 
-[ওয়েবসাইট](https://rupshajonokollanfoundation.vercel.app) ·
+[ওয়েবসাইট](https://rupshajf.vercel.app) ·
 [বৈশিষ্ট্য](#-বৈশিষ্ট্য) ·
 [গ্যালারি](#-গ্যালারি) ·
 [সেটআপ](#-দ্রুত-শুরু) ·
