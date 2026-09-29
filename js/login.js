@@ -853,82 +853,48 @@ RJF.loginConfig = Object.assign({
       lp.reset.clear();
     }
 
-    /* ── QR ডায়ালগ / কার্ড ছবি ── */
-    function openQr() {
+    /* ── QR ডায়ালগ / কার্ড ছবি ──
+       আসল ডিজাইন করা Member ID Card (js/member-id-card.js) এখানে বানানো হয়;
+       এই একই ছবি প্রিভিউ, সেভ ও শেয়ার — তিন জায়গাতেই ব্যবহার হয় */
+    async function buildCardBlob() {
+      return lp.buildMemberCard(session.member, verifyUrl(session.member.member_id));
+    }
+
+    async function openQr() {
       if (!session) return;
       const m = session.member;
       const url = verifyUrl(m.member_id);
-      try {
-        byId('lpQrBig').innerHTML = lp.qr.toSvg(url, { margin: 2, label: 'সদস্য যাচাইয়ের QR কোড' });
-      } catch (e) {
-        byId('lpQrBig').textContent = 'QR তৈরি করা যায়নি — লিংক ব্যবহার করুন।';
-      }
       setText('lpQrName', m.full_name);
       setText('lpQrId', m.member_id);
       el.qrOpenLink.href = url;
+      const box = byId('lpQrBig');
+      box.classList.add('lp-qrbox--card');
+      box.innerHTML = skeleton(1);
       lp.openDialog(el.qrDlg);
-    }
-
-    async function buildCardBlob() {
-      const m = session.member;
-      const url = verifyUrl(m.member_id);
-      const W = 720;
-      const H = 980;
-      const canvas = document.createElement('canvas');
-      canvas.width = W;
-      canvas.height = H;
-      const ctx = canvas.getContext('2d');
       try {
-        if (document.fonts && document.fonts.load) {
-          await Promise.all([
-            document.fonts.load('700 40px "Baloo Da 2"'),
-            document.fonts.load('500 30px "Hind Siliguri"'),
-            document.fonts.load('600 40px "Work Sans"')
-          ]);
+        const blob = await buildCardBlob();
+        const objUrl = URL.createObjectURL(blob);
+        const img = new Image();
+        img.alt = 'সদস্য পরিচয়পত্র — ' + m.full_name;
+        img.decoding = 'async';
+        img.onload = () => setTimeout(() => URL.revokeObjectURL(objUrl), 4000);
+        img.src = objUrl;
+        box.textContent = '';
+        box.appendChild(img);
+      } catch (e) {
+        box.classList.remove('lp-qrbox--card');
+        try {
+          box.innerHTML = lp.qr.toSvg(url, { margin: 2, label: 'সদস্য যাচাইয়ের QR কোড' });
+        } catch (e2) {
+          box.textContent = 'কার্ড তৈরি করা যায়নি — লিংক ব্যবহার করুন।';
         }
-      } catch (e) { /* ফন্ট না পেলে সিস্টেম ফন্টে আঁকবে */ }
-
-      const head = '"Baloo Da 2","Hind Siliguri",sans-serif';
-      const body = '"Hind Siliguri",sans-serif';
-      const num = '"Work Sans","Hind Siliguri",sans-serif';
-
-      ctx.fillStyle = '#FFFFFF';
-      ctx.fillRect(0, 0, W, H);
-      ctx.fillStyle = '#0E3B36';
-      ctx.fillRect(0, 0, W, 170);
-      ctx.fillStyle = '#E3A73E';
-      ctx.fillRect(0, 170, W, 8);
-
-      ctx.textAlign = 'center';
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = '700 44px ' + head;
-      ctx.fillText(orgName(), W / 2, 84, W - 60);
-      ctx.fillStyle = '#E3A73E';
-      ctx.font = '500 28px ' + body;
-      ctx.fillText('সদস্য কার্ড', W / 2, 134);
-
-      const q = 470;
-      lp.qr.drawTo(ctx, url, (W - q) / 2, 226, q, { margin: 2, light: '#FFFFFF', dark: '#0E3B36' });
-
-      ctx.fillStyle = '#1A2420';
-      ctx.font = '700 46px ' + head;
-      ctx.fillText(m.full_name, W / 2, 780, W - 80);
-      ctx.fillStyle = '#0E3B36';
-      ctx.font = '600 40px ' + num;
-      ctx.fillText(m.member_id, W / 2, 840);
-      ctx.fillStyle = '#5E6B64';
-      ctx.font = '500 28px ' + body;
-      ctx.fillText((m.membership_type || 'সদস্য') + ' — স্ক্যান করে সদস্যপদ যাচাই করুন', W / 2, 900, W - 60);
-
-      return new Promise((resolve, reject) => {
-        canvas.toBlob((b) => (b ? resolve(b) : reject(new Error('png-failed'))), 'image/png');
-      });
+      }
     }
 
     async function onQrSave() {
       try {
         const blob = await buildCardBlob();
-        lp.download(session.member.member_id.replace(/[^A-Za-z0-9-]/g, '') + '-card.png', blob);
+        lp.download(session.member.member_id.replace(/[^A-Za-z0-9-]/g, '') + '-id-card.png', blob);
         lp.toast('কার্ডের ছবি সেভ হয়েছে।', 'success');
       } catch (e) {
         lp.toast('ছবি তৈরি করা যায়নি।', 'error');
@@ -943,7 +909,7 @@ RJF.loginConfig = Object.assign({
       try {
         try {
           const blob = await buildCardBlob();
-          const file = new File([blob], 'member-card.png', { type: 'image/png' });
+          const file = new File([blob], m.member_id.replace(/[^A-Za-z0-9-]/g, '') + '-id-card.png', { type: 'image/png' });
           if (navigator.canShare && navigator.canShare({ files: [file] })) {
             await navigator.share({ title: data.title, text: data.text + ' ' + url, files: [file] });
             return;

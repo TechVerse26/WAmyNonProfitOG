@@ -97,7 +97,10 @@
     blood_group: data.blood_group || '',
     gender: data.gender || '',
     permanent_address: data.permanent_address || '',
-    position: data.position || ''
+    position: data.position || '',
+    /* ↓ নতুন — শুধু Member ID Card-এ ব্যবহারের জন্য (ঐচ্ছিক, admin panel থেকে সেট করা) */
+    department: data.department || '',
+    joined_at: data.submittedAt || data.createdAt || null
   });
 
   const isDenied = (status) => (cfg().deniedStatuses || []).indexOf(String(status || '').toLowerCase()) !== -1;

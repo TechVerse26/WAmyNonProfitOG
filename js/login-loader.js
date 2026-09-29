@@ -16,6 +16,7 @@
     'js/login-core.js',
     'js/login-auth.js',
     'js/login-qr.js',
+    'js/member-id-card.js',
     'js/login.js',
     'js/dashboard-notices.js',
     'js/dashboard-events.js',
