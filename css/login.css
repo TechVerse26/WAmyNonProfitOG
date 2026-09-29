@@ -382,6 +382,9 @@
   background: #fff; border: 1px solid var(--lp-line); border-radius: 16px;
 }
 .lp-qrbox svg { display: block; width: 100%; height: auto; }
+.lp-qrbox--card { width: min(300px, 100%); padding: 8px; }
+.lp-qrbox--card img { display: block; width: 100%; height: auto; border-radius: 10px; }
+.lp-qrbox--card .lp-skel { height: 470px; border-radius: 10px; }
 .lp-qrname { margin-top: 14px; text-align: center; font: 700 1.15rem var(--lp-font-head); overflow-wrap: anywhere; }
 .lp-qrid { text-align: center; font: 600 1rem var(--lp-font-num); letter-spacing: .04em; color: var(--lp-brand); }
 .lp-actions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
