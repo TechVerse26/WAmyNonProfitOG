@@ -137,16 +137,16 @@
 <table>
 <tr>
 <td width="33%" align="center">
-<a href="https://www.youtube.com/watch?v=egD2biAoCNE"><img src="https://img.youtube.com/vi/egD2biAoCNE/hqdefault.jpg" alt="ইফতার মাহফিল" width="100%"></a>
+<a href="[https://www.youtube.com/watch?v=egD2biAoCNE](https://youtu.be/32_t3iLTJfE?si=rrx0g6qrw7tbRgMJ)"><img src="https://img.youtube.com/vi/egD2biAoCNE/hqdefault.jpg" alt="ইফতার মাহফিল" width="100%"></a>
 <br><sub><b>ইফতার মাহফিল</b></sub>
 </td>
 <td width="33%" align="center">
-<a href="https://www.youtube.com/watch?v=OAAle0P_TGE"><img src="https://img.youtube.com/vi/OAAle0P_TGE/hqdefault.jpg" alt="চ্যাম্পিয়ন ট্রফি — খেলাধুলার আয়োজন" width="100%"></a>
+<a href="[https://www.youtube.com/watch?v=OAAle0P_TGE](https://youtube.com/shorts/ID478Y5SiaQ?si=LRwtm_9QKFayR1vK)"><img src="https://img.youtube.com/vi/OAAle0P_TGE/hqdefault.jpg" alt="চ্যাম্পিয়ন ট্রফি — খেলাধুলার আয়োজন" width="100%"></a>
 <br><sub><b>খেলাধুলার আয়োজন</b></sub>
 </td>
 <td width="33%" align="center">
-<a href="https://www.youtube.com/watch?v=iWz8ToHtGmM"><img src="https://img.youtube.com/vi/iWz8ToHtGmM/hqdefault.jpg" alt="চ্যাম্পিয়ন ট্রফি — ফাইনাল" width="100%"></a>
-<br><sub><b>চ্যাম্পিয়ন ট্রফির আয়োজন</b></sub>
+<a href="[https://www.youtube.com/watch?v=iWz8ToHtGmM](https://youtube.com/shorts/hXauA9jLevI?si=maDrYdYT-9g71UU7)"><img src="https://img.youtube.com/vi/iWz8ToHtGmM/hqdefault.jpg" alt="চ্যাম্পিয়ন ট্রফি — ফাইনাল" width="100%"></a>
+<br><sub><b> সূরা</b></sub>
 </td>
 </tr>
 </table>
